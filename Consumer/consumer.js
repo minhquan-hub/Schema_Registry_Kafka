@@ -52,24 +52,19 @@ const consume = async() => {
     await consumer.subscribe({ topic })
     await consumer.run({
         eachMessage: async({ message }) => {
-            // console.log("Schema:" + schema)
-            console.log("Value: " + message.value)
             const decodeValue = typeMessage.fromBuffer(message.value)
             const id = decodeValue.id
 
             const schema = await getSchema(id)
-            console.log("Schema: " + schema)
 
             const type = avro.Type.forSchema(schema);
             const messageParse = JSON.parse(decodeValue.message)
             const getMessage = Buffer.from(messageParse.data);
-            console.log("Message: " + getMessage)
+            // console.log("Message: " + getMessage)
 
             const decodeMessage = type.fromBuffer(getMessage)
             const log = await Log.create({ message: decodeMessage.name })
             console.log("Log: " + log)
-
-            console.log("id: " + id)
         },
     })
 }

@@ -45,7 +45,6 @@ const produce = async() => {
                 kind: "C",
                 name: "Quan" + i
             });
-            console.log("encodeData: " + encodeData)
 
             const encodeValue = await typeMessage.toBuffer({
                 id: idSchema,
