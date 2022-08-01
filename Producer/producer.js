@@ -50,7 +50,7 @@ const produce = async() => {
                 id: idSchema,
                 message: JSON.stringify(encodeData)
             })
-            console.log("encodeValue: " + encodeValue)
+            console.log("encodeValue: " + encodeValue + "\n")
 
             await producer.send({
                 topic,
